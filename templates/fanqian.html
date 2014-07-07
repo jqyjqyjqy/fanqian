@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/fanqian.js"></script>
+        <!--<script type="text/javascript" src="js/jquery.mobile-1.3.0.min.js"></script>
+        <link type="text/css" href="css/jquery.mobile-1.3.0.css"  rel="stylesheet" media="all">-->
+        <link type="text/css" href="{{ STATIC_URL }}css/fanqian.css"  rel="stylesheet" media="all">
+        <link type="text/css" href="{{ STATIC_URL }}css/csshake.min.css"  rel="stylesheet" media="all">
+        <link type="text/css" href="{{ STATIC_URL }}css/checkbox.css"  rel="stylesheet" media="all">
+        <title>饭钱哟</title>
+    </head>
+    <body>
+        <div class="demo">
+            <p><span>算</span><span>饭</span><span>钱</span></p>
+            <p>（╯' - ')╯︵ ┻━┻ </p>
+        </div>
+        <div id="show" class="show" style="display:none;">
+            <p id="avg_cost"></p>
+            <p id="pp"></p>
+            <p id="avg" style="display:none;"></p>
+            <p id="mark" style="display:none;"></p>
+            <p id="json" style="display:none;"></p>
+            <a href="javascript:void(0);" class="button" onclick='save()'>确认</a>
+        </div>
+        <div class="fuc">
+            <labal for="fanqian">本次总饭钱</labal>
+            <input id="fanqian" name="fanqian" type="text" onkeyup="clearNoNum(this)" />
+            <div>
+                <h3> 本次用膳人员 </h3>
+                <table style="width: 60%;margin:auto">
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="p1" id="p1" class="css-checkbox" />
+                            <label for="p1" class="css-label">大波</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="p2" id="p2" class="css-checkbox">
+                            <label for="p2" class="css-label">小榕</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="p3" id="p3" class="css-checkbox" />
+                            <label for="p3" class="css-label">JQ</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="p4" id="p4" class="css-checkbox" checked="checked"/>
+                            <label for="p4" class="css-label">FYZ</label>
+                        </td>
+                    </tr>
+                </table>
+                <a href="javascript:void(0);" class="button" onclick='average_cal()'>算钱</a>
+            </div>
+        </div>
+    </body>
+</html>
