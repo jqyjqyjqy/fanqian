@@ -27,7 +27,9 @@ DATABASES = {
 }
 '''
 然后在主目录下运行python manage.py syncdb自动生成数据表(库要自己建)；
-完成以前准备后，运行python manage.py runserver 测试运行项目，默认端口8000。在浏览器里打localhost:8000/suanqian 可以看到页面
+完成以前准备后，运行python manage.py runserver 本笃测试运行项目，默认端口8000。在浏览器里打localhost:8000/suanqian 可以看到页面
+
+运行python manage.py runserver 0.0.0.0:8000 后可以局域网内访问
 
 django简要使用说明
 webapps/suanqian这个文件里面：

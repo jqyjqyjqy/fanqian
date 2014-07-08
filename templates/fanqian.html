@@ -47,10 +47,19 @@
                             <input type="checkbox" name="p4" id="p4" class="css-checkbox" checked="checked"/>
                             <label for="p4" class="css-label">FYZ</label>
                         </td>
+                        <td>
+                            <input type="checkbox" name="p5" id="p5" class="css-checkbox"/>
+                            <label for="p5" class="css-label">蹭饭者</label>
+                        </td>
+                        <td id="cf" style="display:none">
+                            <label for="cf_num">人数</label>
+                            <input id="cf_num" name=cf_num" type="text" placeholder="默认1" onkeyup="value=value.replace(/[^\d]/g,'')" style="width:50px"  />
+                        </td>
                     </tr>
                 </table>
                 <a href="javascript:void(0);" class="button" onclick='average_cal()'>算钱</a>
             </div>
         </div>
+        <a href="/suanqian/show_data" class="button">统计</a>
     </body>
 </html>

@@ -1,6 +1,64 @@
 //http://json.parser.online.fr/
+$(function(){
+    if($("#p5").is(":checked")){
+        $("#cf").css('display','inline');
+    }
+    $("#p5").click(function(){
+        if($("#p5").is(":checked")){
+            $("#cf").css('display','inline');
+        }else{
+            $("#cf").css('display','none');
+        }
+    });
+    $('#container').highcharts({
+        chart: {
+            backgroundColor : "#aef6ef",
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: '饭钱统计demo'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} RMB'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '饭钱',
+            data: [
+            ['小榕', 20.0],
+            ['大波', 15.8],
+            {
+                name: 'FYZ',
+                y: 32.8,
+                sliced: true,
+                selected: true
+            },
+            ['JQ', 32.8],
+            ['蹭饭者', 20.7]
+            ]
+        }]
+    });
+});
 
 function average_cal(){
+    if ($("#fanqian").val() == "") {
+        alert("请输入饭钱，好么？");
+        return false;
+    }
     var cost = parseFloat($("#fanqian").val()).toFixed(1);
     var sum = 0;
     var p_show = "";
@@ -24,6 +82,16 @@ function average_cal(){
         sum += 1;
         p_show += " FYZ "
         mark += "p4 ";
+    }
+    if($("#p5").is(":checked")){
+        if ($("#cf_num") == "") {
+            var cf_num = 1;
+        }else{
+            var cf_num = parseInt($("#cf_num").val());
+        }
+        sum += cf_num;
+        p_show += " 蹭饭者";
+        mark += "p5";
     }
     if (sum == 0) {
         alert ('人数为0？');
@@ -50,8 +118,14 @@ function clearNoNum(obj){
 function save() {
     var people = $("#mark").html();
     var avg = parseFloat($("#avg").html()).toFixed(1);
+    if ($("#cf_num").val() == ""){
+        var other = 1;
+    }else{
+        var other = parseInt($("#cf_num").val());
+    }
     request_data = {
-        "people"    : people    ,
+        "people"    : people,
+        "other_sum" : other ,
         "avg_cost"  : avg
     }
     var url = '/suanqian/save_day/'
