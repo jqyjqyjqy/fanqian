@@ -1,5 +1,6 @@
 //http://json.parser.online.fr/
 $(function(){
+    add_day();
     if($("#p5").is(":checked")){
         $("#cf").css('display','inline');
     }
@@ -133,11 +134,7 @@ function get_data() {
         "day"   : day
     }
     var url = '/suanqian/show_data';
-    var c1 = 0;
-    var c2 = 0;
-    var c3 = 0;
-    var c4 = 0;
-    var c5 = 0;
+
     $.ajax({
         url:url,
         method:"POST",
@@ -145,6 +142,11 @@ function get_data() {
         success:function(data){
             info = $.parseJSON(data);
             if (info.msg == 'success'){
+                var c1 = 0;
+                var c2 = 0;
+                var c3 = 0;
+                var c4 = 0;
+                var c5 = 0;
                 $(info.tot).each(function(index,now){
                     if (now.name == '小榕'){
                         c1 += now.cost;
@@ -185,7 +187,7 @@ function show_pie(c1, c2, c3, c4, c5) {
             text: '饭钱统计demo'
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{series.name}: <b>{point.y:.1f}</b>'
         },
         plotOptions: {
             pie: {
@@ -195,7 +197,7 @@ function show_pie(c1, c2, c3, c4, c5) {
                     enabled: true,
                     color: '#000000',
                     connectorColor: '#000000',
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} RMB'
+                    format: '<b>{point.name}</b>: {point.y:.1f} RMB'
                 }
             }
         },
