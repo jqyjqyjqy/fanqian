@@ -9,9 +9,8 @@
         <link type="text/css" href="{{ STATIC_URL }}css/fanqian.css"  rel="stylesheet" media="all">
         <link type="text/css" href="{{ STATIC_URL }}css/csshake.min.css"  rel="stylesheet" media="all">
         <link type="text/css" href="{{ STATIC_URL }}css/checkbox.css"  rel="stylesheet" media="all">
-        <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/highcharts.js"></script>
-        <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/modules/exporting.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/highcharts.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/exporting.js"></script>
         <title>饭钱哟</title>
     </head>
     <body>
@@ -19,6 +18,25 @@
             <p><span>算</span><span>饭</span><span>钱</span></p>
             <p>（╯' - ')╯︵ ┻━┻ </p>
         </div>
-        <div id="container" style="min-width:700px;height:400px"></div>
+        <div class="fuc">
+            <select>
+                <option value="2014" selected="selected">2014</option>
+            </select>
+            <span>年</span>
+            <select id="month" onChange=add_day()>
+                <option value=""> </option>
+                <script>
+                    var obj=document.getElementById("month");
+                    for (var i=1;i<=12;i++)
+                    obj.options.add(new Option(i,i));
+                </script>
+            </select>
+            <span>月</span>
+            <select id="day">
+            </select>
+            <span>日</span>
+            <a href="javascript:void(0);" class="button" onclick='get_data()'>查询</a>
+            <div id="container" style="min-width:700px;height:400px"></div>
+        </div>
     </body>
 </html>

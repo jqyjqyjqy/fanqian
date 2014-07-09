@@ -31,6 +31,10 @@ def fanqian(request,template_name='fanqian.html'):
     res = {}
     return render_to_response(template_name,Context_Param(request,res))
 
+def jkq(request,template_name='jkq.html'):
+    res = {}
+    return render_to_response(template_name,Context_Param(request,res))
+
 @csrf_exempt 
 def save_day(request):
     if request.method == 'POST':
@@ -62,13 +66,14 @@ def save_day(request):
         msg = 'NONONO'
         return JsonResponse({'msg' : msg})
 
+@csrf_exempt 
 def show_data(request, template_name='show_data.html'):
     if request.method == 'POST':
         info = request.POST.dict()
         year = info.get('year', "")
         month = info.get('month', "")
         day = info.get('day', "")
-        if mouth == "" and day == "":
+        if month == "" and day == "":
             date_list = fanqian_record.objects.filter(effect_time__year=year)
         elif day == "":
             date_list = fanqian_record.objects.filter(effect_time__year=year, effect_time__month=month)
@@ -90,6 +95,7 @@ def show_data(request, template_name='show_data.html'):
                 c4 += item.cost
             if item.Name == u'蹭饭者':
                 c5 += item.cost
+        msg = 'success'
         tot = [{'name':u'小榕', 'cost':c1}, {'name':u'大波', 'cost':c2}, {'name':u'JQ', 'cost':c3}, {'name':u'FYZ', 'cost':c4}, {'name':u'蹭饭者', 'cost':c5}]
         return JsonResponse({'msg' : msg, 'tot' : tot})
     else:
