@@ -176,6 +176,16 @@ function get_data() {
 }
 
 function show_pie(c1, c2, c3, c4, c5) {
+    var title = "2014年";
+    var month = $("#month").val()
+    var day = $("#day").val()
+    if (month != "") {
+        title = title + month + '月';
+    }
+    if (day != "") {
+        title = title + day + '日';
+    }
+    title = title + '饭钱统计'
     $('#container').highcharts({
         chart: {
             backgroundColor : "#aef6ef",
@@ -184,7 +194,7 @@ function show_pie(c1, c2, c3, c4, c5) {
             plotShadow: false
         },
         title: {
-            text: '饭钱统计demo'
+            text: title
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.y:.1f}</b>'
