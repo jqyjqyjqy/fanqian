@@ -1,6 +1,5 @@
 //http://json.parser.online.fr/
 $(function(){
-    add_day();
     if($("#p5").is(":checked")){
         $("#cf").css('display','inline');
     }
